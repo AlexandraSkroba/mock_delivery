@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+  database: booklydb
+  username: postgres
+  password: postgres
+
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+  database: mock_delivery_production
+  username: mock_delivery
+  password: <%= ENV["MOCK_DELIVERY_DATABASE_PASSWORD"] %>
