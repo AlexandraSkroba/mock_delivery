@@ -2,10 +2,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: localhost
-  database: booklydb
-  username: postgres
-  password: postgres
+  host: <%= ENV['DB_HOST'] %> || localhost
+  database: <%= ENV['DB_NAME'] %> || booklydb
+  username: <%= ENV['DB_USER'] %> || postgres
+  password: <%= ENV['DB_PASSWORD'] %> || postgres
 
 
 development:
@@ -13,6 +13,6 @@ development:
 
 production:
   <<: *default
-  database: mock_delivery_production
-  username: mock_delivery
-  password: <%= ENV["MOCK_DELIVERY_DATABASE_PASSWORD"] %>
+  # database: mock_delivery_production
+  # username: mock_delivery
+  # password: <%= ENV["MOCK_DELIVERY_DATABASE_PASSWORD"] %>
